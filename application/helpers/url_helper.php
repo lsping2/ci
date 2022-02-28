@@ -9,4 +9,11 @@ if(! function_exists('url')){
   }
 }
 
+
+if(! function_exists('redirect')){  
+  function redirect($url){
+    echo "<script>location.href='$url'</script>";
+
+  }
+}
 ?>

@@ -48,9 +48,9 @@ class Member extends CI_Controller {
 
 	public function add()
 	{
+
 		$this->load->library("form_validation");
 		
-
 		$this->form_validation->set_rules("mb_id","아이디","required|min_length[3]|max_length[10]|is_unique[member.mb_id]");
 		$this->form_validation->set_rules("mb_name","이름","required|max_length[10]");
 		$this->form_validation->set_rules("mb_password","비밀번호","required|max_length[10]");
@@ -64,19 +64,25 @@ class Member extends CI_Controller {
 		}
 		else
 		{
+			if(function_exists("password_hash")){
+				$this->load->helper("password");
+			}
+			$hash = password_hash($this->input->post('mb_password'),PASSWORD_BCRYPT);
 			$mb_id 			= $this->input->post('mb_id');
 			$mb_name 		= $this->input->post('mb_name');
-			$mb_password 	= $this->input->post('mb_password');
+			$mb_password 	= $hash;
 			$YmdHis 		= date('Y-m-d H:i:s');
 
 			$data  = array(
 				'mb_id' => $mb_id,
 				'mb_name' => $mb_name,
-				'mb_password' => md5($mb_password),
+				'mb_password' => $mb_password,
 				'reg_date' => $YmdHis	
 			);
 			$result = $this->member_m->insertrow($data);
-			redirect("/index.php/member");
+			$this->session->set_flashdata('message','가입완료.');
+		
+			url("/index.php/member");
 		}
 	}
 
@@ -111,7 +117,7 @@ class Member extends CI_Controller {
 				'mb_password' => $mb_password
 			);
 			$result = $this->member_m->updaterow($data, $mb_no);
-			redirect("/index.php/member");
+			url("/index.php/member");
 		}
 
 

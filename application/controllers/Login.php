@@ -77,6 +77,7 @@ class Login extends CI_Controller {
 	{
         $data = array("mb_id","mb_password");
         $this->session->unset_userdata($data);
+        $this->session->sess_destroy();
 
         $this->load->view('header');
         $this->load->view('Footer');
