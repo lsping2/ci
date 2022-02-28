@@ -49,12 +49,14 @@
 
 
 		  <li class="nav-item">
-			<a class="nav-link" href="#"> 메뉴2</a>
+			<? if (!$this->session->userdata('mb_id')) :?>
+				<a class="nav-link" href="/index.php/login/login"> 로그인</a>
+			<? else :?>
+				<a class="nav-link" href="/index.php/login/logout"> 로그아웃</a>
+			<? endif ?>
 		  </li>
 
-		  <li class="nav-item">
-			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"> 메뉴3</a>
-		  </li>
+		 
 		</ul>
 
 		<a class="btn btn-sm-outline-secondary btn-dark" href="#">로그인</a>
