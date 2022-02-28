@@ -8,7 +8,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model("login_m");
-		$this->load->helper(array("url","date"));
+		$this->load->helper(array("url2","date"));
 	}
 	
 	public function index()
@@ -38,7 +38,7 @@ class Login extends CI_Controller {
     public function login()
 	{
 		$this->load->library("form_validation");
-        $this->load->helper('alert','url'); 
+        $this->load->helper('alert','url2'); 
 		
 		$this->form_validation->set_rules("mb_id","아이디","required|min_length[3]|max_length[10]");
 		$this->form_validation->set_rules("mb_password","비밀번호","required|max_length[10]");
@@ -66,7 +66,7 @@ class Login extends CI_Controller {
                 $this->load->view('Footer');
             }else{
                 alert('정보가 일치하지 않습니다.');
-                url('/index.php/login/login');
+                url2('/index.php/login/login');
             }
 
             
