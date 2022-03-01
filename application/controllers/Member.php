@@ -42,9 +42,14 @@ class Member extends CI_Controller {
 	public function del()
 	{
 		$mb_no = $this->uri->segment(4);
+		$data["row"] = $this->member_m->getrow($mb_no);
+		if($data["row"]->file_name){
+			$this->del_upload($data["row"]->file_name);
+		}
+	
 		$this->member_m->deleterow($mb_no);
 
-		redirect("/index.php/member");
+		url2("/index.php/member");
 	}
 
 	public function add()
@@ -66,10 +71,14 @@ class Member extends CI_Controller {
 		}
 		else
 		{
+			/*
 			if(function_exists("password_hash")){
 				$this->load->helper("password");
 			}
 			$hash = password_hash($this->input->post('mb_password'),PASSWORD_BCRYPT);
+			*/
+
+			$hash= strtoupper(hash("sha256", $this->input->post('mb_password')));
 			$mb_id 			= $this->input->post('mb_id');
 			$mb_name 		= $this->input->post('mb_name');
 			$mb_password 	= $hash;
@@ -96,9 +105,7 @@ class Member extends CI_Controller {
 	public function edit()
 	{
 		$mb_no = $this->uri->segment(4);
-		$this->load->library("upload");
 		$this->load->library("form_validation");
-
 		$this->form_validation->set_rules("mb_id","아이디","required|max_length[10]");
 		$this->form_validation->set_rules("mb_name","이름","required|max_length[10]");
 		$this->form_validation->set_rules("mb_password","비밀번호","required|max_length[10]");
@@ -117,11 +124,17 @@ class Member extends CI_Controller {
 			$mb_id 			= $this->input->post('mb_id');
 			$mb_name 		= $this->input->post('mb_name');
 			$mb_password 	= $this->input->post('mb_password');
-
+			/*
+			if(function_exists("password_hash")){
+				$this->load->helper("password");
+			}
+			$hash = password_hash($mb_password,PASSWORD_BCRYPT);
+			*/
+			$hash= strtoupper(hash("sha256", $mb_password));
 			$data  = array(
 				'mb_id' => $mb_id,
 				'mb_name' => $mb_name,
-				'mb_password' => $mb_password
+				'mb_password' => $hash
 			);
 			
 			$file_name = $this->call_upload();
@@ -131,8 +144,6 @@ class Member extends CI_Controller {
 			$result = $this->member_m->updaterow($data, $mb_no);
 			url2("/index.php/member");
 		}
-
-
 
 	}
 
@@ -147,19 +158,41 @@ class Member extends CI_Controller {
 
 		if ( ! $this->upload->do_upload())
 		{
-				$error = array('error' => $this->upload->display_errors());
-
-				$this->load->view('upload_form', $error);
+				//$error = array('error' => $this->upload->display_errors());
+				//$this->load->view('upload_form', $error);
 		}
 		else
 		{
-				$data = array('upload_data' => $this->upload->data());
-
-				//$this->load->view('upload_success', $data);
+			
+				$mb_no = $this->uri->segment(4);
+				if($mb_no){
+					$data["row"] = $this->member_m->getrow($mb_no);
+					if($data["row"]->file_name){
+						//기존파일 삭제
+						unlink("C:/APM/Apache24/htdocs/file/".$data["row"]->file_name);
+					}
+			
+					$data = array('upload_data' => $this->upload->data());
+					//$this->load->view('upload_success', $data);
+				}
+				
 		}
 		return $this->upload->data('file_name');
 		
 	}
+
+
+	public function del_upload($file_name){
+		
+		if($file_name){
+			//기존파일 삭제
+			unlink("C:/APM/Apache24/htdocs/file/".$file_name);
+		}
+	
+	}
+	
+		
+
 
 }
 

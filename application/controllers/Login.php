@@ -54,6 +54,7 @@ class Login extends CI_Controller {
 		{
 			$mb_id 			= $this->input->post('mb_id');
 			$mb_password 	= $this->input->post('mb_password');
+			$mb_password = strtoupper(hash("sha256", $mb_password));
 		
 			$row = $this->login_m->getrow($mb_id,$mb_password);
             if( $row){
