@@ -48,18 +48,12 @@
 		  </li>
 
 
-		  <li class="nav-item">
-			<? if (!$this->session->userdata('mb_id')) :?>
-				<a class="nav-link" href="/index.php/login/login"> 로그인</a>
-			<? else :?>
-				<a class="nav-link" href="/index.php/login/logout"> 로그아웃</a>
-			<? endif ?>
-		  </li>
-
-		 
 		</ul>
-
-		<a class="btn btn-sm-outline-secondary btn-dark" href="#">로그인</a>
+		<? if (!$this->session->userdata('mb_id')) :?>	
+			<a class="btn btn-sm-outline-secondary btn-dark" href="/index.php/login/login">로그인</a>
+		<? else :?>
+			<a class="btn btn-sm-outline-secondary btn-dark" href="/index.php/login/logout"> 로그아웃</a>
+		<? endif ?>	
 	  </div>
 	</nav>
      <br>

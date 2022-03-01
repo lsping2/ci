@@ -8,7 +8,7 @@ class Member extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model("member_m");
-		$this->load->helper(array("url","date"));
+		$this->load->helper(array("url2","date"));
 	}
 	
 	public function index()
@@ -82,7 +82,7 @@ class Member extends CI_Controller {
 			$result = $this->member_m->insertrow($data);
 			$this->session->set_flashdata('message','가입완료.');
 		
-			url("/index.php/member");
+			url2("/index.php/member");
 		}
 	}
 
@@ -107,6 +107,7 @@ class Member extends CI_Controller {
 		}
 		else
 		{
+		
 			$mb_id 			= $this->input->post('mb_id');
 			$mb_name 		= $this->input->post('mb_name');
 			$mb_password 	= $this->input->post('mb_password');
@@ -116,8 +117,9 @@ class Member extends CI_Controller {
 				'mb_name' => $mb_name,
 				'mb_password' => $mb_password
 			);
+			
 			$result = $this->member_m->updaterow($data, $mb_no);
-			url("/index.php/member");
+			url2("/index.php/member");
 		}
 
 
