@@ -17,7 +17,7 @@
     
 	  <div class="form-group">
 		<label for="exampleInputPassword1">Password</label>
-		<input type="password" name="mb_password" class="form-control" id="exampleInputPassword1" value="<?=$row->mb_password?>"  >
+		<input type="password" name="mb_password" class="form-control" id="exampleInputPassword1"  >
 	  </div>
 	  <? if(form_error("mb_password") == true) echo form_error("mb_password");?> 
 
