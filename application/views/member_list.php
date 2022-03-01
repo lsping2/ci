@@ -39,6 +39,7 @@ function search_it(){
       <th scope="col">#</th>
       <th scope="col">ID</th>
       <th scope="col">NAME</th>
+      <th scope="col">FILE</th>
       <th scope="col">DATE</th>
     </tr>
   </thead>
@@ -55,6 +56,12 @@ foreach($list as $row)
       <th scope="row">1</th>
       <td><a href="/index.php/member/view/mb_no/<?=$row->mb_no?>"><?=$row->mb_id?></a></td>
       <td><a href="/index.php/member/view/mb_no/<?=$row->mb_no?>"><?=$row->mb_name?></a></td>
+      <td>
+        <? if( $row->file_name ) :?>
+         <img src="/file/<?=$row->file_name?>" width="50">
+        <? endif?>
+
+      </td>
       <td><?=$row->reg_date?></td>
     </tr>
 <?

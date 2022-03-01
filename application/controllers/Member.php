@@ -9,6 +9,7 @@ class Member extends CI_Controller {
 		$this->load->database();
 		$this->load->model("member_m");
 		$this->load->helper(array("url2","date"));
+		$this->load->library("upload");
 	}
 	
 	public function index()
@@ -50,6 +51,7 @@ class Member extends CI_Controller {
 	{
 
 		$this->load->library("form_validation");
+		$this->load->library("upload");
 		
 		$this->form_validation->set_rules("mb_id","아이디","required|min_length[3]|max_length[10]|is_unique[member.mb_id]");
 		$this->form_validation->set_rules("mb_name","이름","required|max_length[10]");
@@ -79,6 +81,10 @@ class Member extends CI_Controller {
 				'mb_password' => $mb_password,
 				'reg_date' => $YmdHis	
 			);
+
+			$file_name = $this->call_upload();
+			if($file_name) $data["file_name"] = $file_name;
+
 			$result = $this->member_m->insertrow($data);
 			$this->session->set_flashdata('message','가입완료.');
 		
@@ -90,7 +96,7 @@ class Member extends CI_Controller {
 	public function edit()
 	{
 		$mb_no = $this->uri->segment(4);
-
+		$this->load->library("upload");
 		$this->load->library("form_validation");
 
 		$this->form_validation->set_rules("mb_id","아이디","required|max_length[10]");
@@ -118,6 +124,10 @@ class Member extends CI_Controller {
 				'mb_password' => $mb_password
 			);
 			
+			$file_name = $this->call_upload();
+	
+			if($file_name) $data["file_name"] = $file_name;
+
 			$result = $this->member_m->updaterow($data, $mb_no);
 			url2("/index.php/member");
 		}
@@ -125,6 +135,32 @@ class Member extends CI_Controller {
 
 
 	}
+
+	public function call_upload(){
+		$config['upload_path']    = './file/';
+		$config['allowed_types']   = 'gif|jpg|png';
+		$config['overwrite'] = TRUE;
+	
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
+
+		if ( ! $this->upload->do_upload())
+		{
+				$error = array('error' => $this->upload->display_errors());
+
+				$this->load->view('upload_form', $error);
+		}
+		else
+		{
+				$data = array('upload_data' => $this->upload->data());
+
+				//$this->load->view('upload_success', $data);
+		}
+		return $this->upload->data('file_name');
+		
+	}
+
 }
 
 

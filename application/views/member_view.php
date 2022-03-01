@@ -18,6 +18,15 @@
       <?=$row->mb_password; ?>
 	  </div>
 
+	  <div class="form-group">
+		<label for="exampleInputFile">File</label>
+		<? if( $row->file_name ) :?>
+         <img src="/file/<?=$row->file_name?>" width="50">
+      <? endif?>
+	  </div>
+
+
+
 
 
 

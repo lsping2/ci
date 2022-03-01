@@ -21,6 +21,7 @@
 	  </div>
 	  <? if(form_error("mb_password") == true) echo form_error("mb_password");?> 
 
+	  <?php echo form_open_multipart('upload/do_upload');?>
 	  <div class="form-group">
 		<label for="exampleInputFile
 		]">파일</label>

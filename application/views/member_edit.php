@@ -1,7 +1,7 @@
 <div class="alert mycolor1" role="alert">회원추가</div>
 
 
-<form name="form1" method="POST" action="">
+<form name="form1" method="POST" action="" enctype="multipart/form-data">
 	  <div class="form-group">
 		<label for="exampleInputId">아이디</label>
 		<input type="text" name="mb_id" class="form-control" id="exampleInputId" aria-describedby="IDHelp" value="<?=$row->mb_id?>" >
@@ -22,6 +22,15 @@
 	  <? if(form_error("mb_password") == true) echo form_error("mb_password");?> 
 
 
+	  <?php echo form_open_multipart('upload/do_upload');?>
+	  <? if( $row->file_name ) :?>
+         <img src="/file/<?=$row->file_name?>" width="50">
+      <? endif?>
+	  <div class="form-group">
+		<label for="exampleInputFile
+		]">파일</label>
+		<input type="file" name="userfile" class="form-control" id="exampleInputFile"  value="<?=set_value("userfile");?>" >
+	  </div>
 
 	  <div class="form-group form-check">
 		<input type="checkbox" class="form-check-input" id="exampleCheck1">
