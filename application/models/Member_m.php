@@ -7,7 +7,7 @@ class Member_m extends CI_Model {
 	{
 		if(!$search_key)
 		{
-        	 $sql ="select * from member order by mb_no limit $start, $limit";
+        	 echo $sql ="select * from member order by mb_no limit $start, $limit";
 		}
 		else
 		{

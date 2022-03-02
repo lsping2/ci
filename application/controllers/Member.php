@@ -32,11 +32,13 @@ class Member extends CI_Controller {
 			$base_url = "/index.php/member/lists/search_key/$search_key/page";
 		}
 		$page_segment = substr_count(substr($base_url,0,strpos($base_url,"page")),"/");
-		$config["per_page"]=2;
+		$config["per_page"]=3;
 		$config["total_rows"] = $this->member_m->rowcount($search_key);
 		$config["uri_segment"] = $page_segment;
 		$config["base_url"] = $base_url;
 		$this->pagination->initialize($config);
+		$data["total_rows"] = $config["total_rows"];
+		$data["per_page"] = $config["per_page"];
 		$data["page"] = $this->uri->segment($page_segment,0);
 		$data["pagination"] = $this->pagination->create_links();
 		$start = $data["page"];

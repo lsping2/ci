@@ -47,6 +47,7 @@ function search_it(){
   <tbody>
 
 <? 
+$loop=0;
 foreach($list as $row)
 {   
 ?>
@@ -54,7 +55,7 @@ foreach($list as $row)
 
 
     <tr>
-      <th scope="row">1</th>
+      <th scope="row"><?=$total_rows - $page - $loop?></th>
       <td><a href="/index.php/member/view/mb_no/<?=$row->mb_no?>"><?=$row->mb_id?></a></td>
       <td><a href="/index.php/member/view/mb_no/<?=$row->mb_no?>"><?=$row->mb_name?></a></td>
       <td>
@@ -66,6 +67,7 @@ foreach($list as $row)
       <td><?=$row->reg_date?></td>
     </tr>
 <?
+$loop++;
 }
 ?>
 
