@@ -1,5 +1,6 @@
 <script>
 function search_it(){
+
   if( $(".search_key").val() )
   {
     form1.action="/index.php/member/lists/search_key/"+ $(".search_key").val();
@@ -18,7 +19,7 @@ function search_it(){
 <table width="100%">
 <tr>
   <td width="50%">
-        <input type="text" class="form-control search_key" name="search_key" value="<?=$search_key?>" >
+        <input type="text" class="form-control search_key" name="search_key"  value="<?=$search_key?>">
   </td>
   <td>
          <button class="btn mycolor1" type="button" onClick="search_it();">검색</button>
@@ -71,3 +72,6 @@ foreach($list as $row)
   </tbody>
 </table>
 
+<?
+echo $pagination;
+?>

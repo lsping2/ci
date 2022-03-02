@@ -8,8 +8,9 @@ class Member extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model("member_m");
-		$this->load->helper(array("url2","date"));
+		$this->load->helper(array("url","url2","date"));
 		$this->load->library("upload");
+		$this->load->library("pagination");
 	}
 	
 	public function index()
@@ -19,10 +20,31 @@ class Member extends CI_Controller {
 
 	public function lists()
 	{
-		$search_key = urldecode($this->uri->segment(4));
+		//$search_key = urldecode($this->uri->segment(4));
+		//$data["search_key"] = $search_key;
+		$uri_array = $this->uri->uri_to_assoc(3);
+		$search_key = array_key_exists("search_key",$uri_array) ? urldecode($uri_array["search_key"]) : ""; //search_key값이 있을경우
+	
+		//paging start
+		if($search_key ==""){
+			$base_url ="/index.php/member/lists/page";
+		}else{
+			$base_url = "/index.php/member/lists/search_key/$search_key/page";
+		}
+		$page_segment = substr_count(substr($base_url,0,strpos($base_url,"page")),"/");
+		$config["per_page"]=2;
+		$config["total_rows"] = $this->member_m->rowcount($search_key);
+		$config["uri_segment"] = $page_segment;
+		$config["base_url"] = $base_url;
+		$this->pagination->initialize($config);
+		$data["page"] = $this->uri->segment($page_segment,0);
+		$data["pagination"] = $this->pagination->create_links();
+		$start = $data["page"];
+		$limit = $config["per_page"];
+		//paging end
+		
 		$data["search_key"] = $search_key;
-
-		$data["list"] = $this->member_m->getlist($search_key);
+		$data["list"] = $this->member_m->getlist($search_key,$start,$limit);
 
 		$this->load->view('header');
 		$this->load->view('member_list',$data);
@@ -49,7 +71,7 @@ class Member extends CI_Controller {
 	
 		$this->member_m->deleterow($mb_no);
 
-		url2("/index.php/member");
+		redirect("/index.php/member");
 	}
 
 	public function add()
@@ -102,7 +124,7 @@ class Member extends CI_Controller {
 			$result = $this->member_m->insertrow($data);
 			$this->session->set_flashdata('message','가입완료.');
 		
-			url2("/index.php/member");
+			redirect("/index.php/member");
 		}
 	}
 
@@ -151,7 +173,7 @@ class Member extends CI_Controller {
 			if($file_path) $data["file_path"] = $file_path;
 
 			$result = $this->member_m->updaterow($data, $mb_no);
-			url2("/index.php/member");
+			redirect("/index.php/member");
 		}
 
 	}

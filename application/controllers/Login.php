@@ -8,7 +8,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model("login_m");
-		$this->load->helper(array("url2","date"));
+		$this->load->helper(array("url","url2","date"));
 	}
 	
 	public function index()
@@ -67,7 +67,7 @@ class Login extends CI_Controller {
                 $this->load->view('Footer');
             }else{
                 alert('정보가 일치하지 않습니다.');
-                url2('/index.php/login/login');
+                redirect('/index.php/login/login');
             }
 
             
