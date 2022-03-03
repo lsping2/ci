@@ -41,6 +41,7 @@ class Member extends CI_Controller {
 		$data["per_page"] = $config["per_page"];
 		$data["page"] = $this->uri->segment($page_segment,0);
 		$data["pagination"] = $this->pagination->create_links();
+		
 		$start = $data["page"];
 		$limit = $config["per_page"];
 		//paging end
@@ -115,7 +116,7 @@ class Member extends CI_Controller {
 				'reg_date' => $YmdHis	
 			);
 
-			$file_info = $this->call_upload();
+			$file_info = $this->call_upload($mb_id);
 
 			$file_name =  $file_info['upload_data']["file_name"];
 			$file_path =  $file_info['upload_data']["file_path"];
@@ -166,13 +167,15 @@ class Member extends CI_Controller {
 				'mb_password' => $hash
 			);
 	
-			$file_info = $this->call_upload();
+			$file_info = $this->call_upload($mb_id);
 
 			$file_name =  $file_info['upload_data']["file_name"];
 			$file_path =  $file_info['upload_data']["file_path"];
+			$file_name_real =  $file_info['upload_data']["client_name"];
 		
 			if($file_name) $data["file_name"] = $file_name;
 			if($file_path) $data["file_path"] = $file_path;
+			if($file_name_real) $data["file_name_real"] = $file_name_real;
 
 			$result = $this->member_m->updaterow($data, $mb_no);
 			redirect("/index.php/member");
@@ -180,10 +183,11 @@ class Member extends CI_Controller {
 
 	}
 
-	public function call_upload(){
+	public function call_upload($mb_id){
 		$config['upload_path']    = './file/';
 		$config['allowed_types']   = 'gif|jpg|png';
 		$config['overwrite'] = TRUE;
+		$config['file_name']    = $mb_id."_".time();
 	
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
@@ -208,6 +212,7 @@ class Member extends CI_Controller {
 						}
 					}
 				}
+
 				$upload_data = array('upload_data' => $this->upload->data());
 				//$this->load->view('upload_success', $data);
 				return $upload_data;
@@ -218,7 +223,6 @@ class Member extends CI_Controller {
 		
 	}
 
-
 	public function del_upload($file){
 		
 		if($file){
@@ -227,9 +231,6 @@ class Member extends CI_Controller {
 		}
 	
 	}
-	
-		
-
 
 }
 

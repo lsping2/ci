@@ -7,11 +7,11 @@ class Member_m extends CI_Model {
 	{
 		if(!$search_key)
 		{
-        	 echo $sql ="select * from member order by mb_no limit $start, $limit";
+        	$sql ="select * from member order by mb_no desc limit $start, $limit";
 		}
 		else
 		{
-			 $sql ="select * from member where  mb_id like'%$search_key%'order by mb_no limit $start, $limit";		
+			 $sql ="select * from member where  mb_id like'%$search_key%'order by mb_no desc limit $start, $limit";		
 		}
 			return $this->db->query($sql)->result();
 	}
