@@ -2,6 +2,9 @@
 
 
 <form>
+<table class="table">
+	
+	
 	  <div class="form-group">
 		<label for="exampleInputId">아이디</label>
 		  <?=$row->mb_id; ?>
@@ -27,7 +30,7 @@
 
 
 
-
+		</table>
 
 
 	  <a href="/index.php/member/edit/mb_no/<?=$row->mb_no; ?>" class="btn btn-primary">수정</a>
