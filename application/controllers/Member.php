@@ -120,9 +120,11 @@ class Member extends CI_Controller {
 
 			$file_name =  $file_info['upload_data']["file_name"];
 			$file_path =  $file_info['upload_data']["file_path"];
+			$file_name_real =  $file_info['upload_data']["client_name"];
 		
 			if($file_name) $data["file_name"] = $file_name;
 			if($file_path) $data["file_path"] = $file_path;
+			if($file_name_real) $data["file_name_real"] = $file_name_real;
 
 			$result = $this->member_m->insertrow($data);
 			$this->session->set_flashdata('message','가입완료.');
@@ -184,9 +186,9 @@ class Member extends CI_Controller {
 	}
 
 	public function call_upload($mb_id){
-		$config['upload_path']  = './file_product/';
+		$config['upload_path']  = './file/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg|heic';
-        $config['max_size'] = '5000';
+        $config['max_size'] = '8000';
 
 		$config['overwrite'] = TRUE;
 		$config['file_name']    = $mb_id."_".time();
