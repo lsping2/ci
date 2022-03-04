@@ -38,7 +38,7 @@
 			</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			  <a class="dropdown-item" href="/index.php/gubun/lists">분류관리</a>
-			  <a class="dropdown-item" href="#">하위2</a>
+			  <a class="dropdown-item" href="/index.php/product/lists">상품관리</a>
 
 			  <div class="dropdown-divider"></div>
 

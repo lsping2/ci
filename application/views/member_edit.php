@@ -1,4 +1,4 @@
-<div class="alert mycolor1" role="alert">회원추가</div>
+<div class="alert mycolor1" role="alert">회원정보수정</div>
 
 
 <form name="form1" method="POST" action="" enctype="multipart/form-data">
@@ -32,10 +32,6 @@
 		<input type="file" name="userfile" class="form-control" id="exampleInputFile"  value="<?=set_value("userfile");?>" >
 	  </div>
 
-	  <div class="form-group form-check">
-		<input type="checkbox" class="form-check-input" id="exampleCheck1">
-		<label class="form-check-label" for="exampleCheck1">Check me out</label>
-	  </div>
 	  <button type="submit" class="btn btn-primary">수정</button>
 	</form>
 
