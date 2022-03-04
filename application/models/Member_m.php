@@ -13,7 +13,7 @@ class Member_m extends CI_Model {
 		{
 			 $sql ="select * from member where  mb_id like'%$search_key%'order by mb_no desc limit $start, $limit";		
 		}
-			return $this->db->query($sql)->result();
+		return $this->db->query($sql)->result();
 	}
 	
 	public function rowcount($search_key)
@@ -26,7 +26,7 @@ class Member_m extends CI_Model {
 		{
 			 $sql ="select * from member where  mb_id like'%$search_key%'order by mb_no";		
 		}
-			return $this->db->query($sql)->num_rows();
+		return $this->db->query($sql)->num_rows();
 	}
 
 	public function getrow($mb_no)
