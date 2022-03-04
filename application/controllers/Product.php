@@ -179,7 +179,9 @@ class Product extends CI_Controller {
 
 	public function call_upload(){
 		$config['upload_path']  = './file_product/';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|heic';
+        $config['max_size'] = '5000';
+
 		$config['overwrite'] = TRUE;
 		$config['file_name'] = "p_".time();
 	

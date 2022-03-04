@@ -184,8 +184,10 @@ class Member extends CI_Controller {
 	}
 
 	public function call_upload($mb_id){
-		$config['upload_path']    = './file/';
-		$config['allowed_types']   = 'gif|jpg|png';
+		$config['upload_path']  = './file_product/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|heic';
+        $config['max_size'] = '5000';
+
 		$config['overwrite'] = TRUE;
 		$config['file_name']    = $mb_id."_".time();
 	
