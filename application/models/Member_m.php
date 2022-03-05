@@ -58,5 +58,13 @@ class Member_m extends CI_Model {
 		 return $this->db->update("member",$row, $where);
 	}
 	
+	//가입통계
+	public function getstat_member()
+	{
+		$sql ="SELECT left( reg_date, 10 ) AS subdate,count(*) ct FROM `member` group by left( reg_date, 10 ) ";   
+		return $this->db->query($sql)->result();
+	}
+	
 }
+
 ?>

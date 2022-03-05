@@ -13,10 +13,8 @@ class Main extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('header');
-
-		//$this->member_m->rowcount($search_key);
-		//$CI =& get_instance();
-		//$CI->db->get('member');
+		$data["list"] = $this->member_m->getstat_member();
+		$this->load->view('main',$data);
 		$this->load->view('Footer');
 	}
 }
