@@ -1,5 +1,5 @@
 <?
-echo $this->input->ip_address();;
+$this->input->ip_address();
 $url ="api.openweathermap.org/data/2.5/weather?q=Seoul&appid=44751ea6b405b0807b2e96f87991691a";
 /*
 if(extension_loaded("curl")){
