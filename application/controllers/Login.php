@@ -39,6 +39,9 @@ class Login extends CI_Controller {
 	{
 		$this->load->library("form_validation");
         $this->load->helper('alert','url2'); 
+
+		$jwt = new JWT();
+        $JwtSecretKey  = "MyloginSecret";
 		
 		$this->form_validation->set_rules("mb_id","아이디","required|min_length[3]|max_length[10]");
 		$this->form_validation->set_rules("mb_password","비밀번호","required|max_length[10]");
@@ -52,16 +55,22 @@ class Login extends CI_Controller {
 		}
 		else
 		{
+
 			$mb_id 			= $this->input->post('mb_id');
 			$mb_password 	= $this->input->post('mb_password');
 			$mb_password = strtoupper(hash("sha256", $mb_password));
 		
 			$row = $this->login_m->getrow($mb_id,$mb_password);
+
             if( $row){
                 $data  = array(
                     "mb_id" => $row->mb_id,
                     "mb_name" => $row->mb_name
                 );
+
+				$token = $jwt->encode($data,$JwtSecretKey,"HS256");	
+				//echo json_encode($data );
+
                 $this->session->set_userdata($data);
                 $this->load->view('header');
                 $this->load->view('Footer');

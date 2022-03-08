@@ -61,3 +61,5 @@ $route['translate_uri_dashes'] = FALSE;
 */
 $route['api/product/users/(:num)'] = 'api/product/users/mb_no/$1'; // Example 4
 $route['api/product/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/product/users/mb_no/$1/format/$3$4'; // Example 8
+
+//$route['login'] = '/login/login';
