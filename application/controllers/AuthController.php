@@ -19,11 +19,16 @@ class AuthController extends CI_Controller {
 		$mb_password = $this->input->post("mb_password",TRUE);
         $mb_password = strtoupper(hash("sha256", $mb_password));
         $result = $this->authmodel->check_login($mb_id,$mb_password);
-        
+
         if($result == false){
             echo "User not found!";
         }else{
-            $token = $jwt->encode($result,$JwtSecretKey,"HS256");
+            $data =  array(
+                "mb_id" => $mb_id,
+                "mb_name" =>$result->mb_name
+            );
+
+            $token = $jwt->encode($data,$JwtSecretKey,"HS256");
             echo json_encode($token);
         }
     }

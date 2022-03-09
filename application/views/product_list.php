@@ -3,11 +3,11 @@ function search_it(){
 
   if( $(".search_key").val() )
   {
-    form1.action="/index.php/product/lists/search_key/"+ $(".search_key").val();
+    form1.action="/product/lists/search_key/"+ $(".search_key").val();
   }
   else
   {
-    form1.action="/index.php/product/lists";
+    form1.action="/product/lists";
   }
     form1.submit();
 }
@@ -26,7 +26,7 @@ function search_it(){
   </td>
 
   <td align="right">
-    <a href="/index.php/product/add"  class="btn btn-primary">추가</a>
+    <a href="/product/add"  class="btn btn-primary">추가</a>
   </td>
 </tr>
 </table>
@@ -60,9 +60,9 @@ foreach($list as $row)
          <img src="/file_product/<?=$row->file_name?>" width="50">
         <? endif?>
       </td>
-      <td><a href="/index.php/product/view/no/<?=$row->no?>"><?=$row->gubun_name?>(<?=$row->gubun_no?>)</a></td>
-      <td><a href="/index.php/product/view/no/<?=$row->no?>"><?=$row->name?></a></td>
-      <td><a href="/index.php/product/view/no/<?=$row->no?>"><?=$row->price?></a></td>
+      <td><a href="/product/view/no/<?=$row->no?>"><?=$row->gubun_name?>(<?=$row->gubun_no?>)</a></td>
+      <td><a href="/product/view/no/<?=$row->no?>"><?=$row->name?></a></td>
+      <td><a href="/product/view/no/<?=$row->no?>"><?=$row->price?></a></td>
       <td><?=$row->reg_date?></td>
     </tr>
 <?

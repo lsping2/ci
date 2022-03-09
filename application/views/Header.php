@@ -28,17 +28,17 @@
 	  <div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav mr-auto"> <!--mr-auto 메뉴 양끝으로 배치 -->
 		  <li class="nav-item active">
-			<a class="nav-link" href="/index.php/member/lists">회원 </a>
+			<a class="nav-link" href="/member/lists">회원 </a>
 		  </li>
 
 
 		   <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="/index.php/member/lists" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a class="nav-link dropdown-toggle" href="/member/lists" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			  메뉴1
 			</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			  <a class="dropdown-item" href="/index.php/gubun/lists">분류관리</a>
-			  <a class="dropdown-item" href="/index.php/product/lists">상품관리</a>
+			  <a class="dropdown-item" href="/gubun/lists">분류관리</a>
+			  <a class="dropdown-item" href="/product/lists">상품관리</a>
 
 			  <div class="dropdown-divider"></div>
 
@@ -50,9 +50,9 @@
 
 		</ul>
 		<? if (!$this->session->userdata('mb_id')) :?>	
-			<a class="btn btn-sm-outline-secondary btn-dark" href="/index.php/login/login">로그인</a>
+			<a class="btn btn-sm-outline-secondary btn-dark" href="/login/login">로그인</a>
 		<? else :?>
-			<a class="btn btn-sm-outline-secondary btn-dark" href="/index.php/login/logout"> 로그아웃</a>
+			<a class="btn btn-sm-outline-secondary btn-dark" href="/login/logout"> 로그아웃</a>
 		<? endif ?>	
 	  </div>
 	</nav>

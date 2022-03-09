@@ -11,9 +11,9 @@
 
 </table>
 
-<a href="/index.php/gubun/edit/no/<?=$row->no; ?>" class="btn btn-primary">수정</a>
-<a href="/index.php/gubun/del/no/<?=$row->no; ?>" class="btn btn-primary" onClick="return confirm('삭제?');">삭제</a>
-<a href="/index.php/gubun/"  class="btn btn-primary">목록</a>
+<a href="/gubun/edit/no/<?=$row->no; ?>" class="btn btn-primary">수정</a>
+<a href="/gubun/del/no/<?=$row->no; ?>" class="btn btn-primary" onClick="return confirm('삭제?');">삭제</a>
+<a href="/gubun/"  class="btn btn-primary">목록</a>
 </form>
 
 

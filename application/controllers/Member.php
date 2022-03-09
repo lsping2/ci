@@ -27,11 +27,11 @@ class Member extends CI_Controller {
 	
 		//paging start
 		if($search_key ==""){
-			$base_url ="/index.php/member/lists/page";
+			$base_url ="/member/lists/page";
 		}else{
-			$base_url = "/index.php/member/lists/search_key/$search_key/page";
+			$base_url = "/member/lists/search_key/$search_key/page";
 		}
-		$page_segment = substr_count(substr($base_url,0,strpos($base_url,"page")),"/");
+		$page_segment = substr_count(substr($base_url,0,strpos($base_url,"page")),"/")+1;
 		$config["per_page"]=3;
 		$config["total_rows"] = $this->member_m->rowcount($search_key);
 		$config["uri_segment"] = $page_segment;

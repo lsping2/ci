@@ -36,8 +36,8 @@
 
 </table>
 	  
-<a href="/index.php/product/edit/no/<?=$row->no; ?>" class="btn btn-primary">수정</a>
-<a href="/index.php/product/del/no/<?=$row->no; ?>" class="btn btn-primary" onClick="return confirm('삭제?');">삭제</a>
-<a href="/index.php/product/"  class="btn btn-primary">목록</a>
+<a href="/product/edit/no/<?=$row->no; ?>" class="btn btn-primary">수정</a>
+<a href="/product/del/no/<?=$row->no; ?>" class="btn btn-primary" onClick="return confirm('삭제?');">삭제</a>
+<a href="/product/"  class="btn btn-primary">목록</a>
 </form>
 

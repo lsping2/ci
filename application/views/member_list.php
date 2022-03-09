@@ -56,8 +56,8 @@ foreach($list as $row)
 
     <tr>
       <th scope="row"><?=$total_rows - $page - $loop?></th>
-      <td><a href="/index.php/member/view/mb_no/<?=$row->mb_no?>"><?=$row->mb_id?></a></td>
-      <td><a href="/index.php/member/view/mb_no/<?=$row->mb_no?>"><?=$row->mb_name?></a></td>
+      <td><a href="/member/view/mb_no/<?=$row->mb_no?>"><?=$row->mb_id?></a></td>
+      <td><a href="/member/view/mb_no/<?=$row->mb_no?>"><?=$row->mb_name?></a></td>
       <td>
         <? if( $row->file_name ) :?>
          <img src="/file/<?=$row->file_name?>" width="50">
