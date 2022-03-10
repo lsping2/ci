@@ -9,6 +9,10 @@ $(function(){
         //alert('변경');
     })
 });
+
+function find_product(){
+    window.open("/findproduct","","resizeable=yes,scrollbars=yes,width=500,height=600");
+}
 </script>
 
 <div class="alert mycolor1" role="alert">상품수정</div>
@@ -41,8 +45,10 @@ $(function(){
     <td style="width:10%;text-align:center">상품명</td>
     <td align="left">
     <div class="form-inline">
+    <input type="hidden" name="product_no">
     <input type="text" name="name" class="form-control" id="exampleInputName" aria-describedby="IDHelp" value="<?=$row->name?>" >
-    </div>
+    <input type="button" value="제품찾기" onClick="find_product()"class="form-control btn btn-sm mycolor1"> 
+   </div>
     <? if(form_error("name") == true) echo form_error("name");?> 
     </td>
 </tr>
