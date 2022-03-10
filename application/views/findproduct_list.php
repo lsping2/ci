@@ -3,17 +3,24 @@ function search_it(){
 
   if( $(".search_key").val() )
   {
-    form1.action="/product/lists/search_key/"+ $(".search_key").val();
+    form1.action="/findproduct/lists/search_key/"+ $(".search_key").val();
   }
   else
   {
-    form1.action="/product/lists";
+    form1.action="/findproduct/lists";
   }
     form1.submit();
 }
 
+function SendProduct(no,name,price){
+    opener.form1.product_no.value = no;
+    opener.form1.name.value = name;
+    opener.form1.price.value = price;
+    self.close();
+}
+
 </script>
-<div class="alert mycolor1" role="alert">상품리스트</div>
+<div class="alert mycolor1" role="alert">제품선택</div>
 
 <form name="form1" method="post" action="">
 <table width="100%">
@@ -25,9 +32,6 @@ function search_it(){
          <button class="btn mycolor1" type="button" onClick="search_it();">검색</button>
   </td>
 
-  <td align="right">
-    <a href="/product/add"  class="btn btn-primary">추가</a>
-  </td>
 </tr>
 </table>
 </form>
@@ -61,10 +65,10 @@ foreach($list as $row)
          <img src="/file_product/<?=$row->file_name?>" width="50">
         <? endif?>
       </td>
-      <td><a href="/product/view/no/<?=$row->no?>"><?=$row->gubun_name?>(<?=$row->gubun_no?>)</a></td>
-      <td><a href="/product/view/no/<?=$row->no?>"><?=$row->name?></a></td>
-      <td><a href="/product/view/no/<?=$row->no?>"><?=$row->price?></a></td>
-      <td><a href="/product/view/no/<?=$row->no?>"><?=$row->pdate?></a></td>
+      <td><a href="javascript:SendProduct('<?=$row->no?>','<?=$row->name?>','<?=$row->price?>')"><?=$row->gubun_name?>(<?=$row->gubun_no?>)</a></td>
+      <td><a href="javascript:SendProduct('<?=$row->no?>','<?=$row->name?>','<?=$row->price?>')"><?=$row->name?></a></td>
+      <td><a href="javascript:SendProduct('<?=$row->no?>','<?=$row->name?>','<?=$row->price?>')"><?=$row->price?></a></td>
+      <td><a href="javascript:SendProduct('<?=$row->no?>','<?=$row->name?>','<?=$row->price?>')"><?=$row->pdate?></a></td>
       <td><?=$row->reg_date?></td>
     </tr>
 <?

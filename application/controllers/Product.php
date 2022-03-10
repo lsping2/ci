@@ -100,12 +100,14 @@ class Product extends CI_Controller {
 		else
 		{
             $gubun_no   = $this->input->post('gubun_no');
+			$pdate 		= $this->input->post('pdate');
 			$name 		= $this->input->post('name');
 			$price 		= $this->input->post('price');
 			$YmdHis 		= date('Y-m-d H:i:s');
 
 			$data  = array(
 				'gubun_no' => $gubun_no,
+				'pdate' => $pdate,
 				'name' => $name,
 				'price' => $price,
 				'reg_date' => $YmdHis	
@@ -152,11 +154,13 @@ class Product extends CI_Controller {
 		{
 
 			$gubun_no   = $this->input->post('gubun_no');
+			$pdate 		= $this->input->post('pdate');
 			$name 		= $this->input->post('name');
 			$price  	= $this->input->post('price');
 
 			$data  = array(
 				'gubun_no' => $gubun_no,
+				'pdate' => $pdate,
 				'name' => $name,
 				'price' => $price
 			);

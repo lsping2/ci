@@ -1,3 +1,19 @@
+<script>
+$(function(){
+    $("#pdate").datetimepicker({
+        locale: "ko",
+        format: "YYYY-MM-DD",
+        defaultDate : moment()
+    });
+    $("#pdate").on("dp.change", function(e){
+        //alert('변경');
+    })
+});
+
+function find_product(){
+    window.open("/findproduct","","resizeable=yes,scrollbars=yes,width=500,height=600");
+}
+</script>
 <div class="alert mycolor1" role="alert">상품추가</div>
 
 <form name="form1" method="POST" action="" enctype="multipart/form-data" >
@@ -16,10 +32,21 @@
 </tr>
 
 <tr>
+    <td style="width:10%;text-align:center">등록일</td>
+    <td align="left">
+    <div class="input-group input-group-sm date" style="width:120px">
+    <input type="text" name="pdate" id="pdate" class="form-control from-control-sm">
+    </div>
+    </td>
+</tr>
+
+<tr>
     <td style="width:10%;text-align:center">상품명</td>
     <td align="left">
     <div class="form-inline">
+    <input type="hidden" name="product_no">
     <input type="text" name="name" class="form-control" id="exampleInputName" aria-describedby="IDHelp" value="<?=set_value("name");?>" >
+    <input type="button" value="제품찾기" onClick="find_product()"class="form-control btn btn-sm mycolor1">
     </div>
     <? if(form_error("name") == true) echo form_error("name");?> 
     </td>

@@ -1,3 +1,16 @@
+<script>
+$(function(){
+    $("#pdate").datetimepicker({
+        locale: "ko",
+        format: "YYYY-MM-DD",
+        defaultDate : moment()
+    });
+    $("#pdate").on("dp.change", function(e){
+        //alert('변경');
+    })
+});
+</script>
+
 <div class="alert mycolor1" role="alert">상품수정</div>
 
 <form name="form1" method="POST" action="" enctype="multipart/form-data" >
@@ -11,6 +24,15 @@
             <option value="<?=$list[$i]->no?>" <? if( $row->gubun_no == $list[$i]->no) echo "selected";?>><?=$list[$i]->name?></option>
         <? endfor ?>
      </select>
+    </div>
+    </td>
+</tr>
+
+<tr>
+    <td style="width:10%;text-align:center">등록일</td>
+    <td align="left">
+    <div class="input-group input-group-sm date" style="width:120px">
+    <input type="text" name="pdate" id="pdate" value="<?=$row->pdate?>" class="form-control from-control-sm">
     </div>
     </td>
 </tr>

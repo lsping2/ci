@@ -8,7 +8,12 @@
     <div class="form-inline"><?=$row->gubun_name; ?></div>
     </td>
 </tr>
-
+<tr>
+    <td style="width:10%;text-align:center">등록일</td>
+    <td align="left">
+    <div class="form-inline"><?=$row->pdate; ?></div>
+    </td>
+</tr>
 <tr>
     <td style="width:10%;text-align:center">상품명</td>
     <td align="left">
