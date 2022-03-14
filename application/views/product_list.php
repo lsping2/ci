@@ -58,7 +58,7 @@ foreach($list as $row)
       <td scope="row"><?=$total_rows - $page - $loop?></td>
       <td>
         <? if( $row->file_name ) :?>
-         <img src="/file_product/<?=$row->file_name?>" width="50">
+         <img src="/file_product/<?=$row->file_name?>" width="100" class="img-fluid img-thumbnail mymargin5">
         <? endif?>
       </td>
       <td><a href="/product/view/no/<?=$row->no?>"><?=$row->gubun_name?>(<?=$row->gubun_no?>)</a></td>

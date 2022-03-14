@@ -33,7 +33,7 @@
     <td align="left">
      <div class="form-inline">
      <? if( $row->file_name ) :?>
-         <img src="/file_product/<?=$row->file_name?>" width="50">
+         <img src="/file_product/<?=$row->file_name?>"  class="img-fluid img-thumbnail mymargin5">
       <? endif?>
     </div>
     </td>

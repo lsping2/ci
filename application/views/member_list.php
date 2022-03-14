@@ -3,13 +3,18 @@ function search_it(){
 
   if( $(".search_key").val() )
   {
-    form1.action="/index.php/member/lists/search_key/"+ $(".search_key").val();
+    form1.action="/member/lists/search_key/"+ $(".search_key").val();
   }
   else
   {
-    form1.action="/index.php/member/lists";
+    form1.action="/member/lists";
   }
     form1.submit();
+}
+
+function make_excel(){
+  form1.action="/member/excel/search_key/"+ $(".search_key").val();
+  form1.submit();
 }
 
 </script>
@@ -23,6 +28,10 @@ function search_it(){
   </td>
   <td>
          <button class="btn mycolor1" type="button" onClick="search_it();">검색</button>
+  </td>
+
+  <td>
+    <input type="button" value="엑셀" class="form-control btn btn-sm mycolor1" onClick="if(confirm('엑셀로 저장?')) make_excel();">
   </td>
 
   <td align="right">

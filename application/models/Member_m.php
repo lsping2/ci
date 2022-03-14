@@ -15,6 +15,19 @@ class Member_m extends CI_Model {
 		}
 		return $this->db->query($sql)->result();
 	}
+
+	public function getlist_all($search_key)
+	{
+		if(!$search_key)
+		{
+        	$sql ="select * from member order by mb_no desc";
+		}
+		else
+		{
+			 $sql ="select * from member where  mb_id like'%$search_key%'order by mb_no desc";		
+		}
+		return $this->db->query($sql)->result();
+	}
 	
 	public function rowcount($search_key)
 	{

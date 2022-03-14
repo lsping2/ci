@@ -11,6 +11,7 @@ class Member extends CI_Controller {
 		$this->load->helper(array("url","url2","date"));
 		$this->load->library("upload");
 		$this->load->library("pagination");
+		$this->load->library("PHPExcel");
 	}
 	
 	public function index()
@@ -74,7 +75,7 @@ class Member extends CI_Controller {
 	
 		$this->member_m->deleterow($mb_no);
 
-		redirect("/index.php/member");
+		https://view.shoppinglive.naver.com/lives/443760view
 	}
 
 	public function add()
@@ -234,6 +235,55 @@ class Member extends CI_Controller {
 			unlink($file);
 		}
 	
+	}
+
+
+	public function excel()
+	{
+		$uri_array = $this->uri->uri_to_assoc(3);
+		$search_key = array_key_exists("search_key",$uri_array) ? urldecode($uri_array["search_key"]) : ""; //search_key값이 있을경우
+		
+		$count = $this->member_m->rowcount($search_key);
+		$data["list"]  = $this->member_m->getlist_all($search_key);
+		
+		$this->load->view('member_excel',$data);
+		/*
+		// Create new PHPExcel object
+		$objPHPExcel = new PHPExcel();
+
+		$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A1', '아이디')
+            ->setCellValue('B2', '이름')
+            ->setCellValue('C1', '등록일');
+
+		foreach($list as $row){
+			//echo $row->mb_name;
+			$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A4', $row->mb_id)
+            ->setCellValue('A5', $row->mb_name)
+			->setCellValue('A5', $row->reg_date);
+		}
+
+		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		$objPHPExcel->setActiveSheetIndex(0);
+
+		// Redirect output to a client’s web browser (Excel2007)
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="01simple.xls"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+		// If you're serving to IE over SSL, then the following may be needed
+		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header ('Pragma: public'); // HTTP/1.0
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		$objWriter->save('php://output');
+		*/
+		
 	}
 
 }
